@@ -1,0 +1,18 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "deadlydaggers:wooden_dagger"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadlydaggers:stone_dagger"
+        }
+      ]
+    }
+      ]
+    }

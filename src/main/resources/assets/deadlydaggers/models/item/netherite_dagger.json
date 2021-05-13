@@ -1,0 +1,10 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "deadlydaggers:item/netherite_dagger"
+  },
+  "overrides": [
+    {"predicate": {"poisoned": 1},
+      "model":"deadlydaggers:item/netherite_dagger_poisoned"}
+  ]
+}

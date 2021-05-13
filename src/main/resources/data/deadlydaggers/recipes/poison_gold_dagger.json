@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deadlydaggers:gold_dagger"
+    },
+    {
+      "item": "minecraft:potion",
+      "remainder": {
+        "item": "minecraft:glass_bottle"
+      }
+    }
+  ],
+  "result": {
+    "item": "deadlydaggers:gold_dagger",
+    "data": {
+      "$": "$ i0",
+      "Potion": "$i1.Potion",
+      "CustomPotionEffects": "$i1.CustomPotionEffects",
+      "CustomPotionColor": "$i1.CustomPotionColor"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "deadlydaggers.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinEnchantment"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
