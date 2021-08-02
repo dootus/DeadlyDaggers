@@ -18,8 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterials;
-import net.minecraft.loot.ConstantLootTableRange;
-import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.text.Text;

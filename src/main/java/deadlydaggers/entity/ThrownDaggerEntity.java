@@ -15,7 +15,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -90,7 +90,7 @@ public class ThrownDaggerEntity extends PersistentProjectileEntity {
                     this.dropStack(this.asItemStack(), 0.1F);
                 }
 
-                this.remove();
+                this.remove(RemovalReason.DISCARDED);
             } else if (i > 0) {
                 this.setNoClip(true);
                 Vec3d vec3d = new Vec3d(entity.getX() - this.getX(), entity.getEyeY() - this.getY(), entity.getZ() - this.getZ());
@@ -189,7 +189,7 @@ public class ThrownDaggerEntity extends PersistentProjectileEntity {
 
 
                 for(StatusEffectInstance effect:PotionUtil.getPotionEffects(daggerStack)){livingEntity2.addStatusEffect(new StatusEffectInstance(effect));}
-                CompoundTag t = daggerStack.getTag();
+                NbtCompound t = daggerStack.getNbt();
                 if(t!=null){t.remove("Potion");
                     t.remove("CustomPotionEffects");
                     t.remove("CustomPotionColor");}
@@ -205,18 +205,18 @@ public class ThrownDaggerEntity extends PersistentProjectileEntity {
     }
 
     @Override
-    public void writeCustomDataToTag(CompoundTag tag) {
-        super.writeCustomDataToTag(tag);
-        tag.put("daggerStack", daggerStack.toTag(new CompoundTag()));
+    public void writeCustomDataToNbt(NbtCompound tag) {
+        super.writeCustomDataToNbt(tag);
+        tag.put("daggerStack", daggerStack.writeNbt(new NbtCompound()));
         tag.putBoolean("DealtDamage", this.dealtDamage);
 
     }
 
     @Override
-    public void readCustomDataFromTag(CompoundTag tag) {
-        super.readCustomDataFromTag(tag);
+    public void readCustomDataFromNbt(NbtCompound tag) {
+        super.readCustomDataFromNbt(tag);
         if(tag.contains("daggerStack")){
-            daggerStack = ItemStack.fromTag(tag.getCompound("daggerStack"));
+            daggerStack = ItemStack.fromNbt(tag.getCompound("daggerStack"));
             this.dataTracker.set(LOYALTY, (byte) EnchantmentHelper.getLoyalty(daggerStack));
             this.dataTracker.set(ENCHANTED, daggerStack.hasGlint());
         }

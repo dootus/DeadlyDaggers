@@ -21,7 +21,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -65,7 +65,7 @@ public class DaggerItem extends ToolItem implements Vanishable {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
         for(StatusEffectInstance effect:PotionUtil.getPotionEffects(stack)){target.addStatusEffect(new StatusEffectInstance(effect));}
-        CompoundTag t = stack.getTag();
+        NbtCompound t = stack.getNbt();
         if(t!=null){t.remove("Potion");
        t.remove("CustomPotionEffects");
         t.remove("CustomPotionColor");}
@@ -109,7 +109,7 @@ public class DaggerItem extends ToolItem implements Vanishable {
             return 15.0F;
         } else {
             Material material = state.getMaterial();
-            return material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.UNUSED_PLANT && !state.isIn(BlockTags.LEAVES) && material != Material.GOURD ? 1.0F : 1.5F;
+            return material != Material.PLANT && material != Material.REPLACEABLE_PLANT && !state.isIn(BlockTags.LEAVES) && material != Material.GOURD ? 1.0F : 1.5F;
         }
     }
 
@@ -123,16 +123,16 @@ public class DaggerItem extends ToolItem implements Vanishable {
 
 
                     ThrownDaggerEntity daggerEntity = new ThrownDaggerEntity(world, user, stack.copy());
-                    daggerEntity.setProperties(user, user.pitch, user.yaw, 0.0F, 2.5F, 1.0F);
+                    daggerEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 2.5F, 1.0F);
                     daggerEntity.setPos(daggerEntity.getX(),daggerEntity.getY()-0.1,daggerEntity.getZ());
                     daggerEntity.setVelocity(daggerEntity.getVelocity().multiply(0.5D));
-                    if (user.abilities.creativeMode) {
+                    if (user.getAbilities().creativeMode) {
                         daggerEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                     }
 
                     world.spawnEntity(daggerEntity);
                     world.playSoundFromEntity(null, daggerEntity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    if (!user.abilities.creativeMode) {
+                    if (!user.getAbilities().creativeMode) {
                         stack.decrement(1);
                     }
             return TypedActionResult.success(stack,world.isClient());

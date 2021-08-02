@@ -19,18 +19,24 @@ public class DeadlyDaggersClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
-        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_WOODEN_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_STONE_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_IRON_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_GOLD_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_DIAMOND_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_NETHERITE_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_DIAMOND_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_WOODEN_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_STONE_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_IRON_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_GOLD_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_NETHERITE_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        //EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_WOODEN_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
+     //   EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_STONE_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
+    //    EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_IRON_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
+    //    EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_GOLD_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
+   //     EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_DIAMOND_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
+   //     EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_NETHERITE_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
 
         ClientPlayNetworking.registerGlobalReceiver(ThrownDaggerProjectileSpawnPacket.ID, ThrownDaggerProjectileSpawnPacket::onPacket);
 
 
         for (Item dagger : DeadlyDaggers.DAGGER_MAP.inverse().keySet()) {
-            FabricModelPredicateProviderRegistry.register(dagger, new Identifier("poisoned"), (itemStack, clientWorld, livingEntity) -> {
+            FabricModelPredicateProviderRegistry.register(dagger, new Identifier("poisoned"), (itemStack, clientWorld, livingEntity,provider) -> {
                 if (PotionUtil.getPotionEffects(itemStack).isEmpty()) {
                     return 0.0F;
                 } else return 1.0F;

@@ -39,20 +39,20 @@ public class ThrownDaggerProjectileSpawnPacket {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
             buf.writeVarInt(Registry.ENTITY_TYPE.getRawId(entity.getType())); //1
             buf.writeUuid(entity.getUuid()); //2
-            buf.writeVarInt(entity.getEntityId()); //3
+            buf.writeVarInt(entity.getId()); //3
             buf.writeDouble(entity.getX()); //4
             buf.writeDouble(entity.getY()); //5
             buf.writeDouble(entity.getZ()); //6
-            buf.writeByte(MathHelper.floor(entity.pitch * 256.0F / 360.0F)); //7
-            buf.writeByte(MathHelper.floor(entity.yaw * 256.0F / 360.0F)); //8
+            buf.writeByte(MathHelper.floor(entity.getPitch() * 256.0F / 360.0F)); //7
+            buf.writeByte(MathHelper.floor(entity.getYaw() * 256.0F / 360.0F)); //8
 
             ItemStack i = entity.asItemStack();
             buf.writeBoolean(i.hasEnchantments()); // 9
 
             //probably won't nullpointer :^)
-            buf.writeString(i.getTag().getString("Potion")); //10
-            if(i.getTag().contains("CustomPotionColor")) {
-                buf.writeString(i.getTag().getString("CustomPotionColor"));//11
+            buf.writeString(i.getNbt().getString("Potion")); //10
+            if(i.getNbt().contains("CustomPotionColor")) {
+                buf.writeString(i.getNbt().getString("CustomPotionColor"));//11
             }
             else{buf.writeInt(-1);}
             return ServerPlayNetworking.createS2CPacket(ID, buf);
@@ -75,10 +75,10 @@ public class ThrownDaggerProjectileSpawnPacket {
             if(hasEnchantments){fakeDagger.addEnchantment(Enchantments.UNBREAKING,1);}
 
             String potion = buffer.readString(); //10
-            fakeDagger.getOrCreateTag().putString("Potion",potion);
+            fakeDagger.getOrCreateNbt().putString("Potion",potion);
             int customPotionColor = buffer.readInt(); //11
             if(customPotionColor!=-1){
-            fakeDagger.getTag().putInt("CustomPotionColor",customPotionColor);}
+            fakeDagger.getNbt().putInt("CustomPotionColor",customPotionColor);}
 
             //--------
             ClientWorld world = MinecraftClient.getInstance().world;
@@ -90,9 +90,9 @@ public class ThrownDaggerProjectileSpawnPacket {
                 if (world != null && entity != null) {
                     entity.updatePosition(x, y, z);
                     entity.updateTrackedPosition(x, y, z);
-                    entity.pitch = pitch;
-                    entity.yaw = yaw;
-                    entity.setEntityId(entityID);
+                    entity.setPitch(pitch);
+                    entity.setYaw(yaw);
+                    entity.setId(entityID);
                     entity.setUuid(entityUUID);
                     world.addEntity(entityID, entity);
                 }
