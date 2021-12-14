@@ -123,7 +123,7 @@ public class DaggerItem extends ToolItem implements Vanishable {
 
 
                     ThrownDaggerEntity daggerEntity = new ThrownDaggerEntity(world, user, stack.copy());
-                    daggerEntity.setProperties(user, user.getPitch(), user.getYaw(), 0.0F, 2.5F, 1.0F);
+                    daggerEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.5F, 1.0F);
                     daggerEntity.setPos(daggerEntity.getX(),daggerEntity.getY()-0.1,daggerEntity.getZ());
                     daggerEntity.setVelocity(daggerEntity.getVelocity().multiply(0.5D));
                     if (user.getAbilities().creativeMode) {

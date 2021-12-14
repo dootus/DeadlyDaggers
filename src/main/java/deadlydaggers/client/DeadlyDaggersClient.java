@@ -25,6 +25,7 @@ public class DeadlyDaggersClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_IRON_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
         EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_GOLD_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
         EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_NETHERITE_DAGGER,(context) -> new ThrownDaggerEntityRenderer(context));
+        //old 1.16.5 way of doing it
         //EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_WOODEN_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
      //   EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_STONE_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
     //    EntityRendererRegistry.INSTANCE.register(DeadlyDaggers.THROWN_IRON_DAGGER, (dispatcher, context) -> new ThrownDaggerEntityRenderer(dispatcher));
