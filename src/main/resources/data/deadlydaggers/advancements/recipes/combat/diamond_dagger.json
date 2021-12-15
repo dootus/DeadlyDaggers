@@ -1,0 +1,34 @@
+{
+  "parent": "recipes/root",
+  "rewards": {
+    "recipes": [
+      "deadlydaggers:diamond_dagger"
+    ]
+  },
+  "criteria": {
+    "has_diamond": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "recipe_unlocked",
+      "conditions": {
+        "recipe": "deadlydaggers:diamond_dagger"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diamond",
+      "has_the_recipe"
+    ]
+  ]
+}
