@@ -2,14 +2,14 @@
   "item.deadlydaggers.wooden_dagger" : "Wooden Dagger",
   "item.deadlydaggers.stone_dagger" : "Stone Dagger",
   "item.deadlydaggers.iron_dagger" : "Iron Dagger",
-  "item.deadlydaggers.gold_dagger" : "Gold Dagger",
+  "item.deadlydaggers.gold_dagger" : "Golden Dagger",
   "item.deadlydaggers.diamond_dagger" : "Diamond Dagger",
   "item.deadlydaggers.netherite_dagger" : "Netherite Dagger",
 
   "entity.deadlydaggers.thrown_wooden_dagger": "Wooden Dagger",
   "entity.deadlydaggers.thrown_stone_dagger" : "Stone Dagger",
   "entity.deadlydaggers.thrown_iron_dagger" : "Iron Dagger",
-  "entity.deadlydaggers.thrown_gold_dagger" : "Gold Dagger",
+  "entity.deadlydaggers.thrown_gold_dagger" : "Golden Dagger",
   "entity.deadlydaggers.thrown_diamond_dagger" : "Diamond Dagger",
   "entity.deadlydaggers.thrown_netherite_dagger" : "Netherite Dagger",
 
