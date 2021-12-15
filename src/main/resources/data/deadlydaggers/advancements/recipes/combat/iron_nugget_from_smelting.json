@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "deadlydaggers:iron_nugget_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_iron_dagger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "deadlydaggers:iron_dagger"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "deadlydaggers:iron_nugget_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_dagger",
+      "has_the_recipe"
+    ]
+  ]
+}
